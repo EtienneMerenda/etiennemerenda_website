@@ -1,0 +1,12 @@
+{
+	"link": "Icons made by <a href=\"https://www.flaticon.com/authors/srip\" title=\"srip\">srip</a> from <a href=\"https://www.flaticon.com/\" title=\"Flaticon\"> www.flaticon.com</a>",
+	"svg": {
+		"report.svg": ["Eucalyp", "https://www.flaticon.com/free-icon/laptop_1472090?term=report&page=1&position=1"],
+		"plastic.svg": ["Eucalyp", "https://www.flaticon.com/free-icon/3d-printer_734792?term=3d printer&page=5&position=64"],
+		"bioprinter.svg": ["Eucalyp", "https://www.flaticon.com/free-icon/organ_1741936?term=bioprinter&page=1&position=9"],
+		"laptop.svg": ["Eucalyp", "https://www.flaticon.com/free-icon/graphic-design_181367"],
+		"python.svg": ["Freepik", "https://www.flaticon.com/free-icon/python_1822921"],
+		"technical-support.svg": ["Freepik", "https://www.flaticon.com/free-icon/technical-support_1835948?term=programming&page=1&position=13"],
+		"web-development.svg": ["srip", "https://www.flaticon.com/free-icon/coding_2344511?term=programming web&page=1&position=38"]
+	}
+}
