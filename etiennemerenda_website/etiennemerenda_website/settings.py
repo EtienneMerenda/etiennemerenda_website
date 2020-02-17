@@ -131,16 +131,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/var/www/static'
+# STATIC_ROOT = '/var/www/static'
+# heroku settings
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-if DEBUG is True:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-else:
-    MEDIA_ROOT = '/var/www/media'
-
-MEDIA_URL = '/media/'
