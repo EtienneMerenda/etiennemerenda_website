@@ -1,0 +1,67 @@
+@media only screen and (min-width: 600px){
+
+    body {
+        background-color: #1B262C;
+        color: #BBE1FA;
+        font-family: 'Poiret One', cursive;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .logo {
+      display: flex;
+      margin: 10vh auto auto auto;
+    }
+
+    #logo{
+      margin: auto;
+      width: 30vw;
+      height: 30vh;
+    }
+
+    .data{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .data h1{
+        font-size: 60px;
+        font-weight: 900;
+        margin: auto;
+        padding-top: 10vh;
+    }
+
+    .data > div {
+        display: inline-flex;
+        align-items: center;
+        font-size: 30px;
+        font-weight: 900;
+        margin: auto;
+        padding-top: 8vh;
+    }
+
+    .data > div > object{
+        position: absolute;
+        width: 8vw;
+        padding: 0 50px;
+    }
+
+    .data > div > .svg_left{
+        left: 25vw;
+    }
+
+    .data > div > .svg_right{
+        right: 25vw;
+    }
+
+    footer{
+        padding-top: 70px;
+    }
+
+    /* Fill SVG color */
+    {
+        fill: #3282B8;
+    }
+}

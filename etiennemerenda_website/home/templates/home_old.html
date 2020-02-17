@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Site de présentation d'Etienne Merenda,
+developpeur Python & Django, touche à tout. Vous y trouverez des informations
+relatives à mes projets et à mes compétences. Faites comme chez vous !">
+
+    <title>Etienne Merenda, developpeur Python & Django</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/home.css' %}">
+
+    <!--  Add google font  -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada|PT+Sans:400,700|Poiret+One&display=swap" rel="stylesheet">
+    <!-- font-family: 'PT Sans', sans-serif;
+         font-family: 'Montserrat Subrayada', sans-serif;
+         font-family: 'Poiret One', cursive; -->
+
+  </head>
+  <body>
+    <nav>
+        <div>HOME</div>
+        <div>PROJETS</div>
+        <div>TECHNOLOGIES</div>
+        <div>PLUS</div>
+    </nav>
+    <section class="logo">
+        <svg id="logo">Your browser does not support SVG</svg>
+    </section>
+    <section class="data">
+
+      <h1 class="name">Etienne Merenda</h1>
+
+      <div>
+        <svg class="svg_left" id="python" type="image/svg+xml">
+          Your browser does not support SVG
+        </svg>
+        <p class="skill">Développeur Python Junior</p>
+      </div>
+
+      <div>
+        <p class="skill">Développeur Web Junior</p>
+        <svg class="svg_right" id="web" type="image/svg+xml">
+            Your browser does not support SVG
+        </svg>
+      </div>
+
+      <div>
+        <svg class="svg_left" id="modeling" type="image/svg+xml">
+            Your browser does not support SVG
+        </svg>
+        <p class="skill">Modélisation 3D</p>
+      </div>
+
+      <div>
+        <p class="skill">Impression 3D</p>
+        <svg class="svg_right" id="print" type="image/svg+xml">
+            Your browser does not support SVG
+        </svg>
+      </div>
+
+    </section>
+    <footer></footer>
+
+    <script src="{% static 'assets/js/snap.svg/snap.svg-min.js' %}"></script>
+    <script src="{% static 'assets/js/home_svg.js' %}"></script>
+  </body>
+</html>
