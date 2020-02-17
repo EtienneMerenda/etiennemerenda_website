@@ -1,0 +1,21 @@
+@media only screen and (min-width: 600px){
+
+    .toggle{
+      width: 50px;
+      height: 20px;
+    }
+
+    .toggle_wrap > p{
+      margin-left: 5px;
+    }
+
+    .toggle_wrap{
+      display: inline-flex;
+      align-items: center;
+
+      margin-top: 10px;
+
+      margin-left: 1vw;
+      font-size: 30px;
+    }
+}

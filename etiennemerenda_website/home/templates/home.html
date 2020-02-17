@@ -11,7 +11,13 @@ relatives à mes projets et à mes compétences. Faites comme chez vous !">
 
     <title>Etienne Merenda, developpeur Python & Django</title>
 
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/footer.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/nav.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/toggle.css' %}">
+
+    <!-- Get script for use Font Awesome -->
+    <script src="https://kit.fontawesome.com/2ad93e7592.js" crossorigin="anonymous"></script>
 
     <!--  Add google font  -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada|PT+Sans:400,700|Poiret+One&display=swap" rel="stylesheet">
@@ -21,52 +27,77 @@ relatives à mes projets et à mes compétences. Faites comme chez vous !">
 
   </head>
   <body>
-    <nav>
-        <div>HOME</div>
-        <div>PROJETS</div>
-        <div>TECHNOLOGIES</div>
-        <div>PLUS</div>
-    </nav>
+    <header>
+      <nav>
+        <div><a href="/home">HOME</a></div>
+        <div><a href="/projects">PROJETS</a></div>
+        <div><a href="/tech">TECHNOLOGIES</a></div>
+        <div><a href="/more">PLUS</a></div>
+      </nav>
+    </header>
     <section class="logo">
         <svg id="logo">Your browser does not support SVG</svg>
     </section>
     <section class="data">
-
-      <h1 class="name">Etienne Merenda</h1>
-
-      <div>
-        <svg class="svg_left" id="python" type="image/svg+xml">
-          Your browser does not support SVG
-        </svg>
-        <p class="skill">Développeur Python Junior</p>
-      </div>
-
-      <div>
-        <p class="skill">Développeur Web Junior</p>
-        <svg class="svg_right" id="web" type="image/svg+xml">
+      <div class="content">
+        <h1 class="name">Etienne Merenda</h1>
+        <div>
+          <svg class="svg_left" id="python" type="image/svg+xml">
             Your browser does not support SVG
-        </svg>
-      </div>
+          </svg>
+          <h2 class="skill">Développeur Python Junior</h2>
+        </div>
 
-      <div>
-        <svg class="svg_left" id="modeling" type="image/svg+xml">
+        <div>
+          <svg class="svg_right" id="web" type="image/svg+xml">
             Your browser does not support SVG
-        </svg>
-        <p class="skill">Modélisation 3D</p>
-      </div>
+          </svg>
+          <h2 class="skill">Développeur Web Junior</h2>
+        </div>
 
-      <div>
-        <p class="skill">Impression 3D</p>
-        <svg class="svg_right" id="print" type="image/svg+xml">
+        <div>
+          <svg class="svg_left" id="modeling" type="image/svg+xml">
             Your browser does not support SVG
-        </svg>
-      </div>
+          </svg>
+          <h2 class="skill">Modélisation 3D</h2>
+        </div>
 
+        <div>
+          <svg class="svg_right" id="print" type="image/svg+xml">
+            Your browser does not support SVG
+          </svg>
+          <h2 class="skill">Impression 3D</h2>
+        </div>
+      </div>
     </section>
-    <footer></footer>
+    <footer>
+      <div class="toggle_wrap inactive">
+        <svg class="toggle"></svg>
+        <p>Mode nuit</p>
+      </div>
+      <div class="link">
+        <a href="https://gitlab.com/EtienneMerenda">
+          <i class="fab fa-gitlab"></i>
+          <p>Un petit tour sur mon GitLab ?</p>
+        </a>
+        <a href="https://fr.linkedin.com/in/etiennemerenda">
+          <i class="fab fa-linkedin"></i>
+          <p>Et là, mon linkedIn !</p>
+        </a>
+      </div>
+    </footer>
 
     <!-- <script src="{% static 'assets/js/snap.svg/snap.svg-0.5.1.js' %}"></script> -->
+    <!-- Snap framework -->
     <script src="{% static 'assets/js/snap.svg/snap.svg-0.4.1.js' %}"></script>
-    <script src="{% static 'assets/js/home_svg.js' %}"></script>
+    <!-- Home SVG script -->
+    <script src="{% static 'assets/js/Home/home_svg.js' %}"></script>
+    <!-- Init script for home page -->
+    <script src="{% static 'assets/js/Home/init.js' %}"></script>
+    <!-- Toggle SVG load script -->
+    <script src="{% static 'assets/js/toggle_svg.js' %}"></script>
+    <!-- Toggle script -->
+    <script src="{% static 'assets/js/toggle.js' %}"></script>
+
   </body>
 </html>

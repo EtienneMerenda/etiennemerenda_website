@@ -1,67 +1,200 @@
 @media only screen and (min-width: 600px){
 
+    :root{
+      /* Night color */
+      --nightBackground: rgb(27, 38, 44);
+      --nightBackgroundLowOpacity: rgba(27, 38, 44, 0.8);
+      --nightFont: #FFFF;
+
+      --hooverNightFont: #3282B8;
+      --nightFillSvg: #BBE1FA;
+      --nightGitlabColor: #ff5e00;
+
+      /* Day color */
+      --dayBackground: rgb(242, 248, 252);
+      --dayBackgroundLowOpacity: rgba(242, 248, 252, 0.8);
+      --dayFont: #333333;
+
+      --hooverDayFont: #706c61;
+      --dayFillSvg: #3D3D3F;
+      --dayGitlabColor: #ff5e00;
+
+      --background: var(--dayBackground);
+      --backgroundLowOpacity: var(--dayBackgroundLowOpacity);
+      --font: var(--dayFont);
+      --hooverFont: var(--hooverDayFont);
+      --fillSvg: var(--dayFillSvg);
+      --gitlabColor: var(--dayGitlabColor)
+    }
+
+    /* General setup */
+
     body {
-        background-color: #1B262C;
-        color: #BBE1FA;
+        background-color: var(--background);
+        color: var(--font);
         font-family: 'Poiret One', cursive;
+        margin: 0;
     }
 
-    nav {
-        display: none;
+    svg{
+      fill: var(--fillSvg)
     }
 
+    p{
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    a {
+      color: var(--font);
+    }
+
+    a:hover{
+      color: var(--hooverFont);
+    }
+
+    /* Delay animation */
+
+    /* a, {
+      transition-duration: 0.3s;
+    }
+
+    svg, p, h1, h2, nav, body, section, div{
+      transition-duration: 0.1s;
+    } */
+
+
+    /* Logo style */
     .logo {
+      width: 100vw;
+      height: 100vh;
       display: flex;
-      margin: 10vh auto auto auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 6vh auto auto auto;
+      z-index: -1;
     }
 
     #logo{
       margin: auto;
-      width: 30vw;
-      height: 30vh;
+      width: 60vw;
+      height: 60vh;
     }
 
+    /* Data style */
     .data{
-        display: flex;
-        flex-direction: column;
+      width: 100%;
     }
 
+    .data > .content{
+
+      width: 100%;
+
+      display: inline-flex;
+      flex-wrap: wrap;
+
+      background-color: var(--backgroundLowOpacity)
+    }
+
+    /* Title size (Etienne Merenda) */
     .data h1{
+      text-align: center;
+        width: 100%;
         font-size: 60px;
         font-weight: 900;
         margin: auto;
         padding-top: 10vh;
     }
 
-    .data > div {
-        display: inline-flex;
-        align-items: center;
-        font-size: 30px;
-        font-weight: 900;
-        margin: auto;
-        padding-top: 8vh;
+    /* Setup div style (contains SVG and Title) */
+    .data > .content > div {
+      width: 100%;
+      display: inline-flex;
+      /* flex-direction: column; */
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      font-weight: 900;
+      margin: auto;
+      margin-top: 8vh;
     }
 
-    .data > div > object{
-        position: absolute;
-        width: 8vw;
-        padding: 0 50px;
+    .data > .content > div:nth-last-child(1){
+      margin-bottom: 8vh;
     }
 
-    .data > div > .svg_left{
-        left: 25vw;
+    /* Reduce font-size of h2 tag */
+    .data > .content > div > h2 {
+      font-size: 30px;
     }
 
-    .data > div > .svg_right{
-        right: 25vw;
+    /* Setup svg position */
+    .data > .content > div > svg{
+      position: absolute;
+      width: 130px;
     }
 
-    footer{
-        padding-top: 70px;
+    /* Put left and right distance of svg */
+    .data > .content > div > .svg_left{
+      left: 27vw;
     }
 
-    /* Fill SVG color */
-    {
-        fill: #3282B8;
+    .data > .content > div > .svg_right{
+      right: 27vw;
     }
+
+}
+
+@media only screen and (max-width: 1600px) {
+  /* Put left and right distance of svg */
+  .data > .content > div > .svg_left{
+    left: 25vw;
+  }
+
+  .data > .content > div > .svg_right{
+    right: 25vw;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  /* Put left and right distance of svg */
+  .data > .content > div > .svg_left{
+    left: 23vw;
+  }
+
+  .data > .content > div > .svg_right{
+    right: 23vw;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  /* Put left and right distance of svg */
+  .data > .content > div > .svg_left{
+    left: 16vw;
+  }
+
+  .data > .content > div > .svg_right{
+    right: 16vw;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  /* Put left and right distance of svg */
+  .data > .content > div > .svg_left{
+    left: 8vw;
+  }
+
+  .data > .content > div > .svg_right{
+    right: 8vw;
+  }
+}
+@media only screen and (max-width: 800px) {
+  /* Put left and right distance of svg */
+  .data > .content > div > .svg_left{
+    left: 4vw;
+  }
+
+  .data > .content > div > .svg_right{
+    right: 4vw;
+  }
 }

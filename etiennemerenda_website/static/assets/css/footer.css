@@ -1,0 +1,42 @@
+@media only screen and (min-width: 600px){
+
+    /* footer css style */
+    footer{
+      display: inline-flex;
+      justify-content: space-between;
+      align-content: flex-end;
+      align-items: center;
+
+      width: 100%;
+      min-height: 6vh;
+    }
+
+    footer > .link{
+      margin-top: 10px;
+
+      display: inline-flex;
+      margin-right: 3vw;
+      align-items: center;
+    }
+
+    footer > .link > a {
+      display: inline-flex;
+      text-decoration: none;;
+    }
+
+    footer > .link > a > p {
+      margin: 0 40px 0 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .fa-gitlab, .fa-linkedin {
+      font-size: 25px;
+    }
+
+    .fa-gitlab{
+      font-weight: 900;
+      color: #ff5e00;
+
+    }
+}
