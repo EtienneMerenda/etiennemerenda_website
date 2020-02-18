@@ -36,10 +36,13 @@
         margin: 0;
     }
 
-    p, h2{
-      /* Improve width of mozilla text */
+    p, h2, h3{
       -webkit-text-stroke: 0.2px;
       }
+
+    h3{
+      font-size: 25px;
+    }
 
     svg{
       fill: var(--fillSvg)
@@ -84,9 +87,23 @@
       height: 60vh;
     }
 
+    .bisides {
+      display: inline-flex;
+      width: 100%;
+
+      background-color: var(--backgroundLowOpacity);
+    }
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      margin-top: 8vw;
+      width: 50%;
+    }
+
     /* Data style */
     .data{
-      width: 100%;
+      width: 50%;
     }
 
     .data > .content{
@@ -95,8 +112,6 @@
 
       display: inline-flex;
       flex-wrap: wrap;
-
-      background-color: var(--backgroundLowOpacity)
     }
 
     /* Title size (Etienne Merenda) */
@@ -139,11 +154,11 @@
 
     /* Put left and right distance of svg */
     .data > .content > div > .svg_left{
-      left: 27vw;
+      left: calc(27vw - 22%);
     }
 
     .data > .content > div > .svg_right{
-      right: 27vw;
+      right:  calc(27vw + 28%);
     }
 
 }
@@ -151,51 +166,51 @@
 @media only screen and (max-width: 1600px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: 25vw;
+    left: calc(25vw - 20%);
   }
 
   .data > .content > div > .svg_right{
-    right: 25vw;
+    right: calc(25vw - 20%);
   }
 }
 @media only screen and (max-width: 1400px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: 23vw;
+    left: calc(23vw - 20%);
   }
 
   .data > .content > div > .svg_right{
-    right: 23vw;
+    right: calc(23vw + 20%);
   }
 }
 @media only screen and (max-width: 1200px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: 16vw;
+    left: calc(16vw - 20%);
   }
 
   .data > .content > div > .svg_right{
-    right: 16vw;
+    right: calc(16vw + 20%);
   }
 }
 @media only screen and (max-width: 1000px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: 8vw;
+    left: calc(8vw - 20%);
   }
 
   .data > .content > div > .svg_right{
-    right: 8vw;
+    right: calc(8vw + 20%);
   }
 }
 @media only screen and (max-width: 800px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: 4vw;
+    left: calc(4vw - 20%);
   }
 
   .data > .content > div > .svg_right{
-    right: 4vw;
+    right: calc(4vw + 20%);
   }
 }
 
