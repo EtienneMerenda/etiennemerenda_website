@@ -1,9 +1,6 @@
 const toggleButton = document.querySelector('.toggle');
 const toggleWrap = document.querySelector('.toggle_wrap');
 
-console.log(toggleButton);
-
-
 // Get all css values
 const root = getComputedStyle(document.documentElement);
 

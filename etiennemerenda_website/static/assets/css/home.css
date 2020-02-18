@@ -62,14 +62,9 @@
 
     /* Delay animation */
 
-    /* a, {
-      transition-duration: 0.3s;
+    a, {
+      transition: all 0.3s;
     }
-
-    svg, p, h1, h2, nav, body, section, div{
-      transition-duration: 0.1s;
-    } */
-
 
     /* Logo style */
     .logo {
@@ -210,5 +205,9 @@
   p, h2{
     /* Improve width of mozilla text */
     -webkit-text-stroke: 0.9px;
-    }
+  }
+
+  svg, p, h1, h2, nav, body, section, div{
+    transition-duration: 0.1s;
+  }
 }

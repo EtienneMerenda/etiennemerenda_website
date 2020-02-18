@@ -2,6 +2,8 @@
 let toggle = Snap(".toggle");
 var toggleDot;
 
+console.log(toggleDot);
+
 // Define callback onload svg
 function onToggleLoaded(data) {
     toggle.append(data);
