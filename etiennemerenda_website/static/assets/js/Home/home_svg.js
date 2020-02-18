@@ -13,10 +13,22 @@ function onLogoLoaded(data) {
 // Create callback to add python SVG
 function onPythonLoaded(data) {
     python.append(data);
+
+    // animate element of python svg
+    rotate(python.select("#circle"), 'r-360')
 };
 // Create callback to add web SVG
 function onWebLoaded(data) {
     web.append(data);
+
+    // Define path for vibes
+    let path = "M 0, 0 m -2, 0 a 2,2 0 1,0 2,0 a 2,2 0 1,0 -2,0"
+
+    // get text of web svg
+    let coding = web.select("#Coding")
+
+    // Lauch vibes
+    vibes(coding, path, 1000)
 };
 // Create callback to add modeling SVG
 function onLModelingLoaded(data) {
@@ -81,5 +93,4 @@ function vibes (el, path, delay) {
       y = moveToPoint.y;
       el.transform('translate(' + x + ',' + y + ')');
   }, delay, mina.linear, function() {vibes.bind(null, el, path, delay)})
-
 }

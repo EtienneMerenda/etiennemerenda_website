@@ -28,10 +28,7 @@ function setProp(variableName, value) {
   document.documentElement.style.setProperty(variableName, value);
 }
 
-// Declare toggle dot var used for naimate svg
-let toggleDot
-
-// functions use to tanimate dot of toggle element
+// functions use to animate dot of toggle element
 function toggleActivate (toggleDot) {
 
   // Remove st0 class to overwrite color of button element
@@ -45,17 +42,6 @@ function toggleDeactivate (toggleDot) {
   toggleDot.animate({transform: "t0,0"}, 300, mina.easein)
   toggleDot.attr({fill: "white"})
 }
-
-//wait toggle is loaded to add function
-toggleButton.addEventListener('load', function loadToggle (){
-
-  // Get dot svg part of toggle
-  toggleDot = Snap('#dot');
-
-  // If Snap return null, rerun loadToggle
-  if (toggleDot === null) {setTimeout(function(){ loadToggle(); }, 1000);};
-})
-
 
 // Get element needs to be toggled
 function switchMode () {
