@@ -34,9 +34,12 @@
         color: var(--font);
         font-family: 'Poiret One', cursive;
         margin: 0;
-        /* Improve width of mozilla text */
-        -webkit-text-stroke: 0.9px;
     }
+
+    p, h2{
+      /* Improve width of mozilla text */
+      -webkit-text-stroke: 0.2px;
+      }
 
     svg{
       fill: var(--fillSvg)
@@ -199,4 +202,13 @@
   .data > .content > div > .svg_right{
     right: 4vw;
   }
+}
+
+/* Improve size for firefox website */
+@-moz-document url-prefix() {
+
+  p, h2{
+    /* Improve width of mozilla text */
+    -webkit-text-stroke: 0.9px;
+    }
 }
