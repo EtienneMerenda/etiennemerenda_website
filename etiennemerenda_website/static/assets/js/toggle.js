@@ -1,8 +1,13 @@
 const toggleButton = document.querySelector('.toggle');
 const toggleWrap = document.querySelector('.toggle_wrap');
 
+console.log(toggleButton);
+
+
+// Get all css values
 const root = getComputedStyle(document.documentElement);
 
+// Get night colors
 const nightBackground = root.getPropertyValue("--nightBackground");
 const nightBackgroundLowOpacity = root.getPropertyValue("--nightBackgroundLowOpacity");
 const nightFont = root.getPropertyValue("--nightFont");
@@ -10,6 +15,7 @@ const hooverNightFont = root.getPropertyValue("--hooverNightFont");
 const nightFillSvg = root.getPropertyValue("--nightFillSvg");
 const nightGitlabColor = root.getPropertyValue("--nightGitlabColor");
 
+// Get day colors
 const dayBackground = root.getPropertyValue("--dayBackground");
 const dayBackgroundLowOpacity = root.getPropertyValue("--dayBackgroundLowOpacity");
 const dayFont = root.getPropertyValue("--dayFont");
@@ -17,9 +23,39 @@ const hooverDayFont = root.getPropertyValue("--hooverDayFont");
 const dayFillSvg = root.getPropertyValue("--dayFillSvg");
 const dayGitlabColor = root.getPropertyValue("--dayGitlabColor");
 
+// Change css vars values
 function setProp(variableName, value) {
   document.documentElement.style.setProperty(variableName, value);
 }
+
+// Declare toggle dot var used for naimate svg
+let toggleDot
+
+// functions use to tanimate dot of toggle element
+function toggleActivate (toggleDot) {
+
+  // Remove st0 class to overwrite color of button element
+  toggleDot.removeClass("st0");
+  toggleDot.animate({transform: "t21,0"}, 300, mina.easein)
+  toggleDot.attr({fill: "black"})
+  console.log("toggled")
+}
+
+function toggleDeactivate (toggleDot) {
+  toggleDot.animate({transform: "t0,0"}, 300, mina.easein)
+  toggleDot.attr({fill: "white"})
+}
+
+//wait toggle is loaded to add function
+toggleButton.addEventListener('load', function loadToggle (){
+
+  // Get dot svg part of toggle
+  toggleDot = Snap('#dot');
+
+  // If Snap return null, rerun loadToggle
+  if (toggleDot === null) {setTimeout(function(){ loadToggle(); }, 1000);};
+})
+
 
 // Get element needs to be toggled
 function switchMode () {
@@ -32,6 +68,9 @@ function switchMode () {
     setProp("--hooverFont", hooverNightFont);
     setProp("--fillSvg", nightFillSvg);
     setProp("--gitlabColor", nightGitlabColor);
+
+    // Active toggle
+    toggleActivate(toggleDot);
   } else {
     setProp("--background", dayBackground);
     setProp("--backgroundLowOpacity", dayBackgroundLowOpacity);
@@ -39,6 +78,9 @@ function switchMode () {
     setProp("--hooverFont", hooverDayFont);
     setProp("--fillSvg", dayFillSvg);
     setProp("--gitlabColor", dayGitlabColor);
+
+    // Animate button
+    toggleDeactivate(toggleDot);
   }
 
   // Toggle class

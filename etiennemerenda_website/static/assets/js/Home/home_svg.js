@@ -43,8 +43,6 @@ print.attr({fill: "#3282B8"})
 // Create function to rotate selected element
 function rotate(el, deg) {
 
-  console.log(deg);
-
   // Get size of element
   box = el.getBBox()
 
