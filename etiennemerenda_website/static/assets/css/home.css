@@ -208,6 +208,6 @@
   }
 
   svg, p, h1, h2, nav, body, section, div{
-    transition-duration: 0.1s;
+    transition-duration: 0.3s;
   }
 }
