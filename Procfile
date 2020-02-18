@@ -1,1 +1,1 @@
-web: sh -c 'cd ./etiennemerenda_website/ && exec python3 -m gunicorn .etiennemerenda_website.wsgi --log-file'
+web: sh -c 'cd ./etiennemerenda_website/ && exec gunicorn .etiennemerenda_website.wsgi'
