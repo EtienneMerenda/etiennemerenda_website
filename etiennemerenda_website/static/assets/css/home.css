@@ -69,6 +69,13 @@
       transition: all 0.3s;
     }
 
+    section, p{
+      transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
+    }
+
     /* Logo style */
     .logo {
       width: 100vw;
@@ -81,51 +88,39 @@
       z-index: -1;
     }
 
-    #logo{
+    .logo > svg{
       margin: auto;
       width: 60vw;
       height: 60vh;
     }
 
-    .bisides {
-      display: inline-flex;
+    /* content style */
+    .content{
       width: 100%;
-
-      background-color: var(--backgroundLowOpacity);
     }
 
-    .text {
-      display: flex;
-      flex-direction: column;
-      margin-top: 8vw;
-      width: 50%;
-    }
-
-    /* Data style */
-    .data{
-      width: 50%;
-    }
-
-    .data > .content{
+    .content > .jobs{
 
       width: 100%;
 
       display: inline-flex;
       flex-wrap: wrap;
+
+      background-color: var(--backgroundLowOpacity);
     }
 
     /* Title size (Etienne Merenda) */
-    .data h1{
+    .content h1{
       text-align: center;
-        width: 100%;
-        font-size: 60px;
-        font-weight: 900;
-        margin: auto;
-        padding-top: 10vh;
+      width: 100%;
+      font-size: 60px;
+      font-weight: 900;
+      margin: auto;
+      padding-top: 10vh;
     }
 
     /* Setup div style (contains SVG and Title) */
-    .data > .content > div {
+    .content > .jobs > div {
       width: 100%;
       display: inline-flex;
       /* flex-direction: column; */
@@ -137,28 +132,29 @@
       margin-top: 8vh;
     }
 
-    .data > .content > div:nth-last-child(1){
+    /* margin-bottom last element of jobs */
+    .content > .jobs > div:nth-last-child(1){
       margin-bottom: 8vh;
     }
 
     /* Reduce font-size of h2 tag */
-    .data > .content > div > h2 {
+    .content > .jobs > div > h2 {
       font-size: 30px;
     }
 
     /* Setup svg position */
-    .data > .content > div > svg{
+    .content > .jobs > div > svg{
       position: absolute;
       width: 130px;
     }
 
     /* Put left and right distance of svg */
-    .data > .content > div > .svg_left{
-      left: calc(27vw - 22%);
+    .content > .jobs > div:nth-child(odd) > svg{
+      left: 27vw;
     }
 
-    .data > .content > div > .svg_right{
-      right:  calc(27vw + 28%);
+    .content > .jobs > div:nth-child(even) > svg{
+      right:  27vw;
     }
 
 }
@@ -166,51 +162,51 @@
 @media only screen and (max-width: 1600px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: calc(25vw - 20%);
+    left: 25vw;
   }
 
   .data > .content > div > .svg_right{
-    right: calc(25vw - 20%);
+    right: 25vw;
   }
 }
 @media only screen and (max-width: 1400px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: calc(23vw - 20%);
+    left: 23vw;
   }
 
   .data > .content > div > .svg_right{
-    right: calc(23vw + 20%);
+    right: 23vw;
   }
 }
 @media only screen and (max-width: 1200px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: calc(16vw - 20%);
+    left: 16vw;
   }
 
   .data > .content > div > .svg_right{
-    right: calc(16vw + 20%);
+    right: 16vw;
   }
 }
 @media only screen and (max-width: 1000px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: calc(8vw - 20%);
+    left: 8vw;
   }
 
   .data > .content > div > .svg_right{
-    right: calc(8vw + 20%);
+    right: 8vw;
   }
 }
 @media only screen and (max-width: 800px) {
   /* Put left and right distance of svg */
   .data > .content > div > .svg_left{
-    left: calc(4vw - 20%);
+    left: 4vw;
   }
 
   .data > .content > div > .svg_right{
-    right: calc(4vw + 20%);
+    right: 4vw;
   }
 }
 

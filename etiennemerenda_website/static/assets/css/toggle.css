@@ -1,15 +1,15 @@
 @media only screen and (min-width: 600px){
 
-    .toggle{
+    .toggle > svg{
       width: 50px;
       height: 20px;
     }
 
-    .toggle_wrap > p{
+    .toggle > p{
       margin-left: 5px;
     }
 
-    .toggle_wrap{
+    .toggle{
       display: inline-flex;
       align-items: center;
 

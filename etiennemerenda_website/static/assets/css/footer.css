@@ -21,7 +21,8 @@
 
     footer > .link > a {
       display: inline-flex;
-      text-decoration: none;;
+      text-decoration: none;
+      align-items: center;
     }
 
     footer > .link > a > p {
