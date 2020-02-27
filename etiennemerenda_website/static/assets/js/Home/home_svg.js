@@ -1,134 +1,102 @@
-// GET svg from server and animate it
-function getSVG (parameters) {
+// Total length setter for elements in svg 
+function setPath (el) {
+  const length = el.getTotalLength()
+  el.style.strokeDasharray = length + " " + length;
+  el.style.strokeDashoffset = length;
+}
 
-  // Need tow elements: link and class of dom element
-  for (p of parameters) {
+// Transition setter for elements in svg 
+function setTransition (el, sec, ease) {
+  // ease-in ease-out ease-in-out
+  el.getBoundingClientRect();
+  el.style.transition = el.style.WebkitTransition = 'stroke-dashoffset '+ sec + 's ' + ease;
+}
 
-    // Define local variable in scope.
-    // each 'p' erase old 'p' in for loop. Declare local avoid that.
-    const local_p = p
+// Change style attribute to firing animation
+function startDash (el) {
+  el.style.strokeDashoffset = '0';
+}
 
-    // Create and append svg in DOM
-    const draw = SVG().addTo(local_p.class);
+// Return if element have getTotalLength function (boolean)
+function haveGetTotalLength (e) {
+  return (typeof e.getTotalLength === "function")
+}
 
-    // Get SVG with ajax process
-    let xhttp = new XMLHttpRequest()
-    xhttp.open('GET', local_p.url, true)
-    xhttp.send()
-    xhttp.onload = function(e) {
-
-      draw.svg(xhttp.responseText)
-      if (local_p.anime) {local_p.anime()};
-
+// Setup animation parameters for dash-array animation
+function setupAnimSVG (svg) {
+  for (tag of svg) {
+    if (haveGetTotalLength(tag)) {
+      setPath(tag)
+      setTransition(tag, "5", "ease-in-out")
+    } else {
+      setupAnimSVG(tag.children)
     }
   }
 }
 
-// animate python circle
-function rotateCircle () {
-  SVG("#circle").animate(20000, '<>').rotate(1800).loop(true, true);
+// Fire all animations in SVG (dasharray animation)
+function startAnimSVG (svg) {
+  for (tag of svg) {
+    if (haveGetTotalLength(tag)) {
+      startDash(tag)
+    } else {
+      startAnimSVG(tag.children)
+    }
+  }
 }
+
+// Add end animation event listner
+function eventEndAnime (el) {
+
+  el.on('transitionend', function() {
+    el.toggleClass('anime');
+    el.toggleClass('day')
+    el.off('transitionend');
+    el.fire('rotation')
+  })
+}
+
+// Add svg with ajax request and setup event when are loaded
+function addSVG (p) {
+  const xhttp = new XMLHttpRequest()
+
+  xhttp.open('GET', p.url, true)
+  xhttp.send()
+  xhttp.onload = () => {
+
+    // Add svg in DOM
+    let svg = SVG().addTo(p.class).svg(xhttp.responseText);
+
+    // Add event in end of animation
+    eventEndAnime(svg)
+
+    // Toggle anime class for SVG dash-array animation time
+    svg.toggleClass("anime")
+
+    // Get svg in svg element (SVG.js)
+    let innerSvg = svg.node;
+
+    // Setup animation
+    setupAnimSVG(innerSvg.children)
+
+    // Start animation 
+    startAnimSVG(innerSvg.children)
+
+  }
+}
+
+// ------- Start add elements -----------------------------------------------
 
 // Array contains url to get SVG and class name of div in DOM
 const svgParams = [
   {url: "static/assets/logo/home/engrenage_wolf.svg", class: ".logo"},
-  {url: "static/assets/logo/home/python.svg", class: ".python", anime: rotateCircle},
+  {url: "static/assets/logo/home/python.svg", class: ".python"},
   {url: "static/assets/logo/home/web.svg", class: ".web"},
   {url: "static/assets/logo/home/modeling.svg", class: ".modeling"},
   {url: "static/assets/logo/home/print.svg", class: ".print"},
   {url: "static/assets/logo/toggle.svg", class: ".toggle"}
 ]
 
-// console.log(svgParams[1].anime);
-
-getSVG(svgParams);
-
-
-
-
-
-// // Create callback to add python SVG
-// function onPythonLoaded(data) {
-//     python.append(data);
-//
-//     // animate element of python svg
-//     rotate(python.select("#circle"), 'r-360')
-// };
-// // Create callback to add web SVG
-// function onWebLoaded(data) {
-//     web.append(data);
-//
-//     // Define path for vibes
-//     let path = "M 0, 0 m -2, 0 a 2,2 0 1,0 2,0 a 2,2 0 1,0 -2,0"
-//
-//     // get text of web svg
-//     let coding = web.select("#Coding")
-//
-//     // Lauch vibes
-//     vibes(coding, path, 1000)
-// };
-// // Create callback to add modeling SVG
-// function onLModelingLoaded(data) {
-//     modeling.append(data);
-// };
-// // Create callback to add print SVG
-// function onPrintLoaded(data) {
-//     print.append(data);
-// };
-//
-// // Load SVG file with snapSVG
-// Snap.load("static/assets/logo/Home/engrenage_wolf.svg", onLogoLoaded)
-// Snap.load("static/assets/logo/Home/python.svg", onPythonLoaded)
-// Snap.load("static/assets/logo/Home/web.svg", onWebLoaded)
-// Snap.load("static/assets/logo/Home/modeling.svg", onLModelingLoaded)
-// Snap.load("static/assets/logo/Home/print.svg", onPrintLoaded)
-// Snap.load("static/assets/logo/Home/arrow_left.svg", onArrowLoaded)
-//
-// // fill svg with custom color
-// python.attr({fill: "#3282B8"})
-// web.attr({fill: "#3282B8"})
-// modeling.attr({fill: "#3282B8"})
-// print.attr({fill: "#3282B8"})
-//
-// // Create function to rotate selected element
-// function rotate(el, deg) {
-//
-//   // Get size of element
-//   box = el.getBBox()
-//
-//   // Init parms for rotate
-//   let init = "r0," + box.cx + ',' + box.cy;
-//   let final = deg + ',' + box.cx + ',' + box.cy;
-//
-//   // Initialise transfom attribute
-//   el.transform(init);
-//
-//   // Setup animation
-//   el.animate({
-//     transform: final
-//   }, 40000, mina.linear, rotate.bind(null, el, deg)); // bind args ?
-// };
-//
-//
-// function vibes (el, path, delay) {
-//
-//   // create path
-//   path = el.path(path).attr({ 'fill': 'none', 'stroke': 'none'});
-//
-//   // Get length of path
-//   let pathLen = Snap.path.getTotalLength(path)
-//
-//   // Get getBBox
-//   let box = el.getBBox()
-//
-//   Snap.animate(
-//     from=0,
-//     to=pathLen,
-//     function(step) {
-//       // Each step, refresh position
-//       moveToPoint = Snap.path.getPointAtLength( path, step );
-//       x = moveToPoint.x;
-//       y = moveToPoint.y;
-//       el.transform('translate(' + x + ',' + y + ')');
-//   }, delay, mina.linear, function() {vibes.bind(null, el, path, delay)})
-// }
+svgParams.forEach(svg => {
+  addSVG(svg)
+});

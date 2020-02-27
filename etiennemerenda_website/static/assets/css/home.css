@@ -27,6 +27,37 @@
       --gitlabColor: var(--dayGitlabColor)
     }
 
+    /* Animation */
+    /* SVG dasharray */
+
+    .jobs svg.day{
+      fill: var(--fillSvg);
+      stroke-width: 4;
+      stroke: var(--dayBackground);
+    }
+
+    .jobs svg.anime{
+      fill: var(--dayBackground);
+      stroke-width: 4;
+      stroke: var(--fillSvg);
+    }
+
+    /* Delay animation */
+
+    a, svg{
+      transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -webkit-transition: all 0.5s;
+      -o-transition: all 0.5s;
+    }
+
+    section, p{
+      transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
+    }
+
     /* General setup */
 
     body {
@@ -44,9 +75,6 @@
       font-size: 25px;
     }
 
-    svg{
-      fill: var(--fillSvg)
-    }
 
     p{
       margin: 0;
@@ -63,18 +91,6 @@
       color: var(--hooverFont);
     }
 
-    /* Delay animation */
-
-    a, {
-      transition: all 0.3s;
-    }
-
-    section, p{
-      transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      -webkit-transition: all 0.3s;
-      -o-transition: all 0.3s;
-    }
 
     /* Logo style */
     .logo {
