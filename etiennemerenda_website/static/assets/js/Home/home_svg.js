@@ -9,7 +9,7 @@ function setPath (el) {
 function setTransition (el, sec, ease) {
   // ease-in ease-out ease-in-out
   el.getBoundingClientRect();
-  el.style.transition = el.style.WebkitTransition = 'stroke-dashoffset '+ sec + 's ' + ease;
+  el.style.transition = el.style.WebkitTransition = 'stroke-dashoffset '+ sec + 's ' + ease + " 3s";
 }
 
 // Change style attribute to firing animation
@@ -57,46 +57,51 @@ function eventEndAnime (el) {
 }
 
 // Add svg with ajax request and setup event when are loaded
-function addSVG (p) {
+function addSVG (p, onLoadEvent) {
   const xhttp = new XMLHttpRequest()
 
   xhttp.open('GET', p.url, true)
   xhttp.send()
-  xhttp.onload = () => {
+  xhttp.onload = onLoadEvent.bind(null, {class: p.class, svg: xhttp})
+}
 
-    // Add svg in DOM
-    let svg = SVG().addTo(p.class).svg(xhttp.responseText);
+function onLoadJobs (data) {
 
-    // Add event in end of animation
-    eventEndAnime(svg)
+  let className = data.class,
+      svgCode = data.svg.responseText;
+  
 
-    // Toggle anime class for SVG dash-array animation time
-    svg.toggleClass("anime")
+  // Add svg in DOM
+  let svg = SVG().addTo(className).svg(svgCode);
 
-    // Get svg in svg element (SVG.js)
-    let innerSvg = svg.node;
+  // Add event in end of animation
+  eventEndAnime(svg)
 
-    // Setup animation
-    setupAnimSVG(innerSvg.children)
+  // Toggle anime class for SVG dash-array animation time
+  svg.toggleClass("anime")
 
-    // Start animation 
-    startAnimSVG(innerSvg.children)
+  // Get svg in svg element (SVG.js)
+  let innerSvg = svg.node;
 
-  }
+  // Setup animation
+  setupAnimSVG(innerSvg.children)
+
+  // Start animation 
+  startAnimSVG(innerSvg.children)
 }
 
 // ------- Start add elements -----------------------------------------------
 
 // Array contains url to get SVG and class name of div in DOM
-const svgParams = [
+const jobsSvg = [
   {url: "static/assets/logo/home/engrenage_wolf.svg", class: ".logo"},
   {url: "static/assets/logo/home/python.svg", class: ".python"},
   {url: "static/assets/logo/home/web.svg", class: ".web"},
   {url: "static/assets/logo/home/modeling.svg", class: ".modeling"},
-  {url: "static/assets/logo/home/print.svg", class: ".print"},
-  {url: "static/assets/logo/toggle.svg", class: ".toggle"}
+  {url: "static/assets/logo/home/print.svg", class: ".print"}
 ]
 
-svgParams.forEach(svg => {
-  addSVG(svg)
+// Load each svg on home page
+jobsSvg.forEach(svg => {
+  addSVG(svg, onLoadJobs)
 });

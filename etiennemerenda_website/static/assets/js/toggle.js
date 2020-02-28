@@ -1,5 +1,4 @@
-const toggleButton = document.querySelector('.toggle');
-const toggleWrap = document.querySelector('.toggle_wrap');
+let toggleButton
 
 // Get all css values
 const root = getComputedStyle(document.documentElement);
@@ -29,22 +28,21 @@ function setProp(variableName, value) {
 function toggleActivate (toggleDot) {
 
   // Remove st0 class to overwrite color of button element
-  toggleDot.removeClass("st0");
-  toggleDot.animate({transform: "t21,0"}, 300, mina.easein)
-  toggleDot.attr({fill: "black"})
-  console.log("toggled")
+  toggleDot.animate(500, '>').transform({translateX: "21"})
+  toggleDot.fill("black")
 }
 
 function toggleDeactivate (toggleDot) {
-  toggleDot.animate({transform: "t0,0"}, 300, mina.easein)
-  toggleDot.attr({fill: "white"})
+  toggleDot.animate(500, '<').transform({translateX: "0"})
+  toggleDot.fill("white")
 }
 
 // Get element needs to be toggled
 function switchMode () {
-  if (toggleWrap.classList.contains("inactive")) {
 
-    // Change css varibel value
+  if (toggleButton.hasClass("inactive")) {
+
+    // Change css variable value
     setProp("--background", nightBackground);
     setProp("--backgroundLowOpacity", nightBackgroundLowOpacity);
     setProp("--font", nightFont);
@@ -67,8 +65,6 @@ function switchMode () {
   }
 
   // Toggle class
-  toggleWrap.classList.toggle("active");
-  toggleWrap.classList.toggle("inactive");
+  toggleButton.toggleClass("active");
+  toggleButton.toggleClass("inactive");
 }
-
-toggleButton.onclick = switchMode

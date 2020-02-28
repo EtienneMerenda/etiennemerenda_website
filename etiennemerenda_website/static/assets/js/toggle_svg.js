@@ -1,25 +1,33 @@
-// Get toggle svg element
-let toggle = Snap(".toggle");
-var toggleDot;
+function onLoadToggle (data) {
 
-console.log(toggleDot);
+  let className = data.class,
+      svgCode = data.svg.responseText;
 
-// Define callback onload svg
-function onToggleLoaded(data) {
-    toggle.append(data);
+  // Add svg in DOM
+  let svg = SVG().addTo(className).svg(svgCode);
 
-    // Get dot svg part of toggle
-    toggleDot = Snap('#dot');
+  // Get dot svg part of toggle
+  toggleDot = SVG('#toggle #dot');
+  toggleButton = SVG('#toggle');
 
-    // Choose night day mode with local time
-    const date = new Date();
-    const hour = date.getHours()
-    console.log(hour);
+  // Add inactive class
+  toggleButton.toggleClass("inactive")
 
-    if (hour < 7 | hour > 18) {
-      switchMode();
-    }
-};
+  // add eventlistner on toggleButton
+  toggleButton.click(switchMode)
 
-// Load svg and use callback
-Snap.load("static/assets/logo/toggle.svg", onToggleLoaded)
+  // Choose night day mode with local time
+  const date = new Date();
+  const hour = date.getHours()
+  console.log(hour);
+
+  if (hour < 7 | hour > 18) {
+  //  switchMode();
+  }
+}
+
+const toggleSvg = [{url: "static/assets/logo/toggle.svg", class: ".toggle"}]
+
+toggleSvg.forEach(svg => {
+  addSVG(svg, onLoadToggle)
+});
