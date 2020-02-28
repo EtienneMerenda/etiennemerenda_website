@@ -1,3 +1,4 @@
 package-lock.json
 __pycache__
 .htaccess
+node_modules

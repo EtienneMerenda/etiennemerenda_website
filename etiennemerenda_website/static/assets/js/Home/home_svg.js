@@ -1,59 +1,66 @@
 // Total length setter for elements in svg 
 function setPath (el) {
-  const length = el.getTotalLength()
-  el.style.strokeDasharray = length + " " + length;
-  el.style.strokeDashoffset = length;
-}
-
-// Transition setter for elements in svg 
-function setTransition (el, sec, ease) {
-  // ease-in ease-out ease-in-out
-  el.getBoundingClientRect();
-  el.style.transition = el.style.WebkitTransition = 'stroke-dashoffset '+ sec + 's ' + ease + " 3s";
+  const length = el.node.getTotalLength()
+  el.css("stroke-dasharray", length + " " + length);
+  el.css("stroke-dashoffset", length);
 }
 
 // Change style attribute to firing animation
-function startDash (el) {
-  el.style.strokeDashoffset = '0';
+function dash (el, duration, delay=0, wait=0) {
+  el.animate({
+    duration: duration,
+    delay: delay,
+    wait: wait
+  }).css("stroke-dashoffset", 0).after(() => {
+    svgMain.forEach(s => {
+      s.fire("dashEnd")
+    });
+  })
 }
 
 // Return if element have getTotalLength function (boolean)
 function haveGetTotalLength (e) {
-  return (typeof e.getTotalLength === "function")
+  return (typeof e.node.getTotalLength === "function")
 }
 
 // Setup animation parameters for dash-array animation
-function setupAnimSVG (svg) {
-  for (tag of svg) {
-    if (haveGetTotalLength(tag)) {
-      setPath(tag)
-      setTransition(tag, "5", "ease-in-out")
+function setupDashAnim (svg) {
+
+  svg.children().each(function (el) {
+
+    if (haveGetTotalLength(el)) {
+      setPath(el);
     } else {
-      setupAnimSVG(tag.children)
+      setupDashAnim(el)}
     }
-  }
+  )
 }
 
 // Fire all animations in SVG (dasharray animation)
-function startAnimSVG (svg) {
-  for (tag of svg) {
-    if (haveGetTotalLength(tag)) {
-      startDash(tag)
-    } else {
-      startAnimSVG(tag.children)
+function startDashAnim (svg) {
+  svg
+    .children()
+    .each(function (el) {
+      if (haveGetTotalLength(el)) {
+        dash(el, 8000, 3000);
+      } else {
+        startDashAnim(el)
+      }
     }
-  }
+  )
 }
 
 // Add end animation event listner
 function eventEndAnime (el) {
 
-  el.on('transitionend', function() {
+  el.on('dashEnd', function(e) {
     el.toggleClass('anime');
-    el.toggleClass('day')
-    el.off('transitionend');
-    el.fire('rotation')
+    el.off('dashEnd');
   })
+}
+
+function dashEndFire (svg) {
+  for (s of svg) {s.fire('dashEnd')}
 }
 
 // Add svg with ajax request and setup event when are loaded
@@ -67,27 +74,27 @@ function addSVG (p, onLoadEvent) {
 
 function onLoadJobs (data) {
 
-  let className = data.class,
-      svgCode = data.svg.responseText;
-  
+  let className, svgCode;
+
+  className = data.class;
+  svgCode = data.svg.responseText;
 
   // Add svg in DOM
   let svg = SVG().addTo(className).svg(svgCode);
+
+  svgMain.push(svg);
 
   // Add event in end of animation
   eventEndAnime(svg)
 
   // Toggle anime class for SVG dash-array animation time
-  svg.toggleClass("anime")
-
-  // Get svg in svg element (SVG.js)
-  let innerSvg = svg.node;
+  svg.toggleClass("anime");
 
   // Setup animation
-  setupAnimSVG(innerSvg.children)
+  setupDashAnim(svg);
 
-  // Start animation 
-  startAnimSVG(innerSvg.children)
+  // Start draw animation 
+  startDashAnim(svg);
 }
 
 // ------- Start add elements -----------------------------------------------
@@ -100,6 +107,10 @@ const jobsSvg = [
   {url: "static/assets/logo/home/modeling.svg", class: ".modeling"},
   {url: "static/assets/logo/home/print.svg", class: ".print"}
 ]
+
+// Setup timeline for all elements
+
+const svgMain= []
 
 // Load each svg on home page
 jobsSvg.forEach(svg => {
