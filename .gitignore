@@ -3,3 +3,5 @@ poetry.lock
 __pycache__
 .htaccess
 node_modules
+*.pyc
+*.pyo
