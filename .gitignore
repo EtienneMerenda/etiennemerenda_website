@@ -2,4 +2,4 @@ package-lock.json
 poetry.lock
 __pycache__
 .htaccess
-node_moduless
+node_modules
