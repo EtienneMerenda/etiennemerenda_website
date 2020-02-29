@@ -2,12 +2,14 @@
 
     /* footer css style */
     footer{
+      position: fixed;
+      bottom: 0;
       display: inline-flex;
       justify-content: space-between;
       align-items: flex-start;
 
       width: 100%;
-      min-height: 6vh;
+      min-height: 40px;
     }
 
     footer > .link{
