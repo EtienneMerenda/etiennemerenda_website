@@ -6,16 +6,12 @@ function setPath (el) {
 }
 
 // Change style attribute to firing animation
-function dash (el, duration, delay=0, wait=0) {
+function dash (el, duration, delay=0, wait=0, fire) {
   el.animate({
     duration: duration,
     delay: delay,
     wait: wait
-  }).css("stroke-dashoffset", 0).after(() => {
-    svgMain.forEach(s => {
-      s.fire("dashEnd")
-    });
-  })
+  }).css("stroke-dashoffset", 0).after(fire)
 }
 
 // Return if element have getTotalLength function (boolean)
@@ -37,14 +33,15 @@ function setupDashAnim (svg) {
 }
 
 // Fire all animations in SVG (dasharray animation)
-function startDashAnim (svg) {
+function startDashAnim (svg, duration=8000, delay=500, wait=0, fire) {
+
   svg
     .children()
     .each(function (el) {
       if (haveGetTotalLength(el)) {
-        dash(el, 8000, 3000);
+        dash(el, duration, delay, wait, fire);
       } else {
-        startDashAnim(el)
+        startDashAnim(el, duration, delay, wait, fire)
       }
     }
   )
@@ -59,19 +56,28 @@ function eventEndAnime (el) {
   })
 }
 
-function dashEndFire (svg) {
-  for (s of svg) {s.fire('dashEnd')}
+function dashEndJobsFire () {
+  svgMain.forEach(s => {
+    s.fire("dashEnd")
+  });
 }
 
 // Add svg with ajax request and setup event when are loaded
 function addSVG (p, onLoadEvent) {
-  const xhttp = new XMLHttpRequest()
 
+  const xhttp = new XMLHttpRequest()
   xhttp.open('GET', p.url, true)
   xhttp.send()
-  xhttp.onload = onLoadEvent.bind(null, {class: p.class, svg: xhttp})
+  xhttp.onload = onLoadEvent.bind(
+    null, 
+    {
+      class: p.class,
+      svg: xhttp
+    }
+  )
 }
 
+// What appens when jobs SVG is loaded
 function onLoadJobs (data) {
 
   let className, svgCode;
@@ -94,25 +100,66 @@ function onLoadJobs (data) {
   setupDashAnim(svg);
 
   // Start draw animation 
-  startDashAnim(svg);
+  startDashAnim(svg, 8000, 3000, 0, dashEndJobsFire);
+}
+
+//What appens when logo svg is loaded
+function onLoadLogo (data) {
+
+  let className, svgCode;
+
+  className = data.class;
+  svgCode = data.svg.responseText;
+
+  // Add svg in DOM
+  let svg = SVG().addTo(className).svg(svgCode);
+
+  console.log('setup animation');
+  
+  setupDashAnim(svg)
+
+  console.log('start animation');
+  startDashAnim(svg, 3000, 0, 0, function() {
+    SVG('.jobs').show()
+    SVG('footer').show()
+    addJobsSvg()}
+  )
+
 }
 
 // ------- Start add elements -----------------------------------------------
 
-// Array contains url to get SVG and class name of div in DOM
-const jobsSvg = [
-  {url: "static/assets/logo/home/engrenage_wolf.svg", class: ".logo"},
-  {url: "static/assets/logo/home/python.svg", class: ".python"},
-  {url: "static/assets/logo/home/web.svg", class: ".web"},
-  {url: "static/assets/logo/home/modeling.svg", class: ".modeling"},
-  {url: "static/assets/logo/home/print.svg", class: ".print"}
-]
+function addJobsSvg () {
 
-// Setup timeline for all elements
+  // Array contains url to get SVG and class name of div in DOM
+  const jobsSvg = [
+    {url: "static/assets/logo/home/python.svg", class: ".python"},
+    {url: "static/assets/logo/home/web.svg", class: ".web"},
+    {url: "static/assets/logo/home/modeling.svg", class: ".modeling"},
+    {url: "static/assets/logo/home/print.svg", class: ".print"}
+  ]
 
-const svgMain= []
+  // Load each svg on home page
+  jobsSvg.forEach(svg => {
+    addSVG(svg, onLoadJobs)
+  });
+}
 
-// Load each svg on home page
-jobsSvg.forEach(svg => {
-  addSVG(svg, onLoadJobs)
-});
+
+
+function addLogoSvg () {
+
+  // Hide 
+  SVG('.jobs').hide()
+  SVG('footer').hide()
+
+  let logo;
+  logo = {url: "static/assets/logo/home/engrenage.svg", class: ".logo"};
+
+  addSVG(logo, onLoadLogo)
+
+}
+
+const svgMain = [];
+
+addLogoSvg()

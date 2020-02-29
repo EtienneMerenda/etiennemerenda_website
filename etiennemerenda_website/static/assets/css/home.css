@@ -124,6 +124,17 @@
       position: fixed;
       top: 0;
       left: 0;
+      margin: auto;
+      z-index: -1;
+    }
+
+    .logo.anime {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
       margin: 6vh auto auto auto;
       z-index: -1;
     }
@@ -132,15 +143,14 @@
       margin: auto;
       width: 60vw;
       height: 60vh;
-      opacity: 0.1;
     }
 
-    /* content style */
-    .content{
+    /* jobs style */
+    .jobs{
       width: 100%;
     }
 
-    .content > .jobs{
+    .jobs > .jobs{
 
       width: 100%;
 
@@ -150,7 +160,7 @@
     }
 
     /* Title size (Etienne Merenda) */
-    .content h1{
+    .jobs h1{
       text-align: center;
       width: 100%;
       font-size: 60px;
@@ -160,7 +170,7 @@
     }
 
     /* Setup div style (contains SVG and Title) */
-    .content > .jobs > div {
+    .jobs > div {
       width: 100%;
       display: inline-flex;
       /* flex-direction: column; */
@@ -173,27 +183,27 @@
     }
 
     /* margin-bottom last element of jobs */
-    .content > .jobs > div:nth-last-child(1){
+    .jobs > div:nth-last-child(1){
       margin-bottom: 8vh;
     }
 
     /* Reduce font-size of h2 tag */
-    .content > .jobs > div > h2 {
+    .jobs > div > h2 {
       font-size: 30px;
     }
 
     /* Setup svg position */
-    .content > .jobs > div > svg{
+    .jobs > div > svg{
       position: absolute;
       width: 130px;
     }
 
     /* Put left and right distance of svg */
-    .content > .jobs > div:nth-child(odd) > svg{
+    .jobs > div:nth-child(odd) > svg{
       left: 27vw;
     }
 
-    .content > .jobs > div:nth-child(even) > svg{
+    .jobs > div:nth-child(even) > svg{
       right:  27vw;
     }
 

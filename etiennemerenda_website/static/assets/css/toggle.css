@@ -3,13 +3,18 @@
     .toggle > svg{
       width: 50px;
       height: 20px;
+      
     }
 
-    .toggle > svg.day{
+    #toggle #dot{
+      transition: all 0.2s;
+    }
+
+    .day .toggle > svg{
       fill: var(--dayFillSvg);
     }
 
-    .toggle > svg.night{
+    .night .toggle > svg{
       fill: var(--nightFillSvg);
     }
 

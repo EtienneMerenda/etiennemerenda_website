@@ -21,8 +21,8 @@ function onLoadToggle (data) {
   const hour = date.getHours()
   console.log(hour);
 
-  if (hour < 7 | hour > 18) {
-  //  switchMode();
+  if (false) {
+  switchMode();
   }
 }
 
