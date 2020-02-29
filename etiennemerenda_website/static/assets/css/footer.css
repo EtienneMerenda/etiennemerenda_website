@@ -4,8 +4,7 @@
     footer{
       display: inline-flex;
       justify-content: space-between;
-      align-content: flex-end;
-      align-items: center;
+      align-items: flex-start;
 
       width: 100%;
       min-height: 6vh;

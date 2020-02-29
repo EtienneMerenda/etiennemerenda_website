@@ -1,3 +1,6 @@
+// Construct functions --------------------------------
+
+// Dash animation ------------------------
 // Total length setter for elements in svg 
 function setPath (el) {
   const length = el.node.getTotalLength()
@@ -47,9 +50,12 @@ function startDashAnim (svg, duration=8000, delay=500, wait=0, fire) {
   )
 }
 
+
+// EventListner on end of animation ------------
 // Add end animation event listner
 function eventEndAnime (el) {
 
+  // When dashEnd fireing, remove anime class => fill day or night color.
   el.on('dashEnd', function(e) {
     el.toggleClass('anime');
     el.off('dashEnd');
@@ -57,6 +63,8 @@ function eventEndAnime (el) {
 }
 
 function dashEndJobsFire () {
+
+  // Iterate svg in jobs and fire dashEnd event
   svgMain.forEach(s => {
     s.fire("dashEnd")
   });
@@ -113,18 +121,17 @@ function onLoadLogo (data) {
 
   // Add svg in DOM
   let svg = SVG().addTo(className).svg(svgCode);
-
-  console.log('setup animation');
   
   setupDashAnim(svg)
 
-  console.log('start animation');
-  startDashAnim(svg, 3000, 0, 0, function() {
-    SVG('.jobs').show()
-    SVG('footer').show()
-    addJobsSvg()}
-  )
+  startDashAnim(svg, 3000, 0, 0, showHome)
+}
 
+function showHome() {
+
+  SVG('.jobs').css('opacity', '1')
+  SVG('footer').show('opacity', '1')
+  addJobsSvg()
 }
 
 // ------- Start add elements -----------------------------------------------
@@ -148,10 +155,6 @@ function addJobsSvg () {
 
 
 function addLogoSvg () {
-
-  // Hide 
-  SVG('.jobs').hide()
-  SVG('footer').hide()
 
   let logo;
   logo = {url: "static/assets/logo/home/engrenage.svg", class: ".logo"};

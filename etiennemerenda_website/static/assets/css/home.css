@@ -148,15 +148,10 @@
     /* jobs style */
     .jobs{
       width: 100%;
-    }
-
-    .jobs > .jobs{
-
-      width: 100%;
-
-      display: inline-flex;
-      flex-wrap: wrap;
-
+      display: flex;
+      flex-direction: column;
+      min-height: 95vh;
+      opacity: 0;
     }
 
     /* Title size (Etienne Merenda) */
@@ -172,14 +167,14 @@
     /* Setup div style (contains SVG and Title) */
     .jobs > div {
       width: 100%;
-      display: inline-flex;
+      display: flex;
       /* flex-direction: column; */
       justify-content: center;
       align-items: center;
       font-size: 30px;
       font-weight: 900;
       margin: auto;
-      margin-top: 8vh;
+      /* margin-top: 8vh; */
     }
 
     /* margin-bottom last element of jobs */
