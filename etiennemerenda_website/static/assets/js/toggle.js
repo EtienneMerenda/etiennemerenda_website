@@ -72,7 +72,7 @@ function switchMode (callback) {
   
 }
 
-const toggleSvg = [{url: "static/assets/logo/toggle.svg", class: ".toggle"}]
+const toggleSvg = [{url: "static/assets/svg/toggle.svg", class: ".toggle"}]
 
 // Load togle button and fire events to load others components
 toggleSvg.forEach(svg => {

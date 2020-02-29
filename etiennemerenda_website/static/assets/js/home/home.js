@@ -22,7 +22,7 @@ function logoHandler() {
 function addLogoSvg () {
 
   let logo;
-  logo = {url: "static/assets/logo/home/engrenage.svg", class: ".logo"};
+  logo = {url: "static/assets/svg/home/logo.svg", class: ".logo"};
 
   addSVG(logo, onLoadLogo)
 
@@ -77,10 +77,10 @@ function jobsHandler () {
 
   // Array contains url to get SVG and class name of div in DOM
   const jobsSvg = [
-    {url: "static/assets/logo/home/python.svg", class: ".python"},
-    {url: "static/assets/logo/home/web.svg", class: ".web"},
-    {url: "static/assets/logo/home/modeling.svg", class: ".modeling"},
-    {url: "static/assets/logo/home/print.svg", class: ".print"}
+    {url: "static/assets/svg/home/python.svg", class: ".python"},
+    {url: "static/assets/svg/home/web.svg", class: ".web"},
+    {url: "static/assets/svg/home/modeling.svg", class: ".modeling"},
+    {url: "static/assets/svg/home/print.svg", class: ".print"}
   ]
 
   // Load each svg on home page
