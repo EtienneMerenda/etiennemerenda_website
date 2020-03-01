@@ -1,3 +1,25 @@
+{% load static %}
 <footer>
-  <p>Site réalisé avec Django</p>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/toggle.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/footer.css' %}">
+  <script src="https://kit.fontawesome.com/2ad93e7592.js" crossorigin="anonymous"></script>
+
+  <div class="toggle">
+    <p>Mode nuit</p>
+  </div>
+  <div class="link">
+    <a class="day" href="https://gitlab.com/EtienneMerenda">
+      <i class="fab fa-gitlab"></i>
+      <p>Un petit tour sur mon GitLab ?</p>
+    </a>
+    <a class="day" href="https://fr.linkedin.com/in/etiennemerenda">
+      <i class="fab fa-linkedin"></i>
+      <p>Et là, mon linkedIn !</p>
+    </a>
+  </div>
+
+  <script src="{% static 'assets/js/utils.js' %}"></script>
+  <script src="{% static 'assets/js/toggle.js' %}"></script>
+  
 </footer>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Etienne Merenda, developpeur Python & Django</title>
+
+    {% block head_decription %}{% endblock head_decription %}  
+    {% block css %}{% endblock css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/base.css' %}">
+  
+    <link href="https://fonts.googleapis.com/css?family=Marck+Script|Muli&display=swap" rel="stylesheet">
+    <script src="{% static 'assets/js/svg.js/svg.min.js' %}"></script>
+  </head>
+  <body class="day">
+    
+    {% block body %}{% endblock body %}
+    
+    {% block footer %}{% endblock footer %}
+
+  </body>
+</html>

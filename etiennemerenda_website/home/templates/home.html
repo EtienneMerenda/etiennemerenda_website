@@ -1,70 +1,41 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
 {% load static %}
 
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="Site de présentation d'Etienne Merenda,
-    developpeur Python & Django, touche à tout. Vous y trouverez des informations
-    relatives à mes projets et à mes compétences. Faites comme chez vous !">
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/home.css' %}">
+{% endblock css %}
+  
 
-    <title>Etienne Merenda, developpeur Python & Django</title>
+{% block head_decription %}
+  <meta name="description" content="Site de présentation d'Etienne Merenda,
+  developpeur Python & Django, touche à tout. Vous y trouverez des informations
+  relatives à mes projets et à mes compétences. Faites comme chez vous !">
+{% endblock head_decription %}
+  
+{% block body %}
+{% include 'includes/background.html' %}
+  <section class="jobs">
+    <h1 class="name">Etienne Merenda</h1>
+    <div class=python>
+      <h2 class="skill">Développeur Python Junior</h2>
+    </div>
+    <div class="web">
+      <h2 class="skill">Développeur Web Junior</h2>
+    </div>
+    <div class="modeling">
+      <h2 class="skill">Modélisation 3D</h2>
+    </div>
+    <div class="print">
+      <h2 class="skill">Impression 3D</h2>
+    </div>
+  </section>
+</div>
+<script src="{% static 'assets/js/home/home.js' %}"></script>
+{% endblock body %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/footer.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/home.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/nav.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/toggle.css' %}">
+{% block footer %}
+  {% include 'includes/footer.html' %}
+{% endblock footer %}
+  
 
-    <script src="https://kit.fontawesome.com/2ad93e7592.js" crossorigin="anonymous"></script>
-    
-    <link href="https://fonts.googleapis.com/css?family=Marck+Script|Muli&display=swap" rel="stylesheet">
-  </head>
-  <body class="day">
-    <header>
-      <nav>
-        <div><a href="/home">HOME</a></div>
-        <div><a href="/projects">PROJETS</a></div>
-        <div><a href="/tech">TECHNOLOGIES</a></div>
-        <div><a href="/more">PLUS</a></div>
-      </nav>
-    </header>
-    <div class="logo"></div>
-    <section class="jobs">
-      <h1 class="name">Etienne Merenda</h1>
-      <div class=python>
-        <h2 class="skill">Développeur Python Junior</h2>
-      </div>
-      <div class="web">
-        <h2 class="skill">Développeur Web Junior</h2>
-      </div>
-      <div class="modeling">
-        <h2 class="skill">Modélisation 3D</h2>
-      </div>
-      <div class="print">
-        <h2 class="skill">Impression 3D</h2>
-      </div>
-    </section>
-
-    <footer>
-      <div class="toggle">
-        <p>Mode nuit</p>
-      </div>
-      <div class="link">
-        <a class="day" href="https://gitlab.com/EtienneMerenda">
-          <i class="fab fa-gitlab"></i>
-          <p>Un petit tour sur mon GitLab ?</p>
-        </a>
-        <a class="day" href="https://fr.linkedin.com/in/etiennemerenda">
-          <i class="fab fa-linkedin"></i>
-          <p>Et là, mon linkedIn !</p>
-        </a>
-      </div>
-    </footer>
-
-    <script src="{% static 'assets/js/svg.js/svg.min.js' %}"></script>
-    <script src="{% static 'assets/js/utils.js' %}"></script>
-    <script src="{% static 'assets/js/toggle.js' %}"></script>
-    <script src="{% static 'assets/js/home/home.js' %}"></script>
-  </body>
-</html>

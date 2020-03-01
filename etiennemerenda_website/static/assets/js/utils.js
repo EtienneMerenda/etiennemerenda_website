@@ -34,15 +34,21 @@ function dash (el, duration, delay=0, wait=0, callback=() => {}) {
 }
   
 // Fire all animations in SVG (dasharray animation)
-function startDashAnim (svg, duration=8000, delay=500, wait=0, fire) {
+function startDashAnim (svg, eventTiming, fire) {
   
+  let duration, delay, wait;
+
+  duration = eventTiming.duration;
+  delay = eventTiming.delay;
+  wait = eventTiming.wait;
+
   svg
     .children()
     .each(function (el) {
       if (haveGetTotalLength(el)) {
         dash(el, duration, delay, wait, fire);
       } else {
-        startDashAnim(el, duration, delay, wait, fire)
+        startDashAnim(el, eventTiming, fire)
       }
     }
   )
@@ -51,16 +57,19 @@ function startDashAnim (svg, duration=8000, delay=500, wait=0, fire) {
   
   
 // Add svg with ajax request and setup event when are loaded
-function addSVG (p, onLoadEvent) {
-  
+function addSVG (svgParams, onLoadEvent) {
+
+  let url = svgParams.url
+  let class_ = svgParams.class
+    
   const xhttp = new XMLHttpRequest()
-  xhttp.open('GET', p.url, true)
+  xhttp.open('GET', url, true)
   xhttp.send()
   xhttp.onload = onLoadEvent.bind(
     null, 
     {
-      class: p.class,
-      svg: xhttp
+      class: class_,
+      svg: xhttp,
     }
   )
 }

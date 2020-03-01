@@ -19,7 +19,7 @@ function onLoadToggle (data) {
   // add eventlistner on toggleButton
   toggleButton.click(switchMode)
 
-  mainHandler()
+  toggleHandler(mainHandler)
 }
 
 // functions use to animate dot of toggle element
@@ -67,12 +67,26 @@ function switchMode (callback) {
   toggleButton.toggleClass("inactive");
 
   if (callback.constructor.name === "Function") {callback()}
-
-  
   
 }
 
 const toggleSvg = [{url: "static/assets/svg/toggle.svg", class: ".toggle"}]
+
+function toggleHandler (logoHandler) {
+  dayNightHandler(logoHandler)
+}
+
+function dayNightHandler(callback) {
+  // Choose night day mode with local time
+  const date = new Date();
+  const hour = date.getHours()
+
+  if (hour > 20 | hour < 7) {
+    switchMode(callback);
+  } else {    
+    callback()
+  }
+}
 
 // Load togle button and fire events to load others components
 toggleSvg.forEach(svg => {

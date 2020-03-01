@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/error.css' %}">
+{% endblock css %}
+    
+
+{% block body %}
+{% include 'includes/background.html' %}
+<section class="error">
+    <h1>La porte 404 était ouverte ?<br/>Il n'y a plus rien ici.</h1>
+    <h2><a href="/">La sortie, c'est par ici !</a></h2>
+</section>
+
+<script src="{% static 'assets/js/error.js' %}"></script> 
+{% include 'includes/footer.html' %}
+{% endblock body %}
+    -

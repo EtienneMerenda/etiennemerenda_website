@@ -1,74 +1,21 @@
+// Add event listener on document to fire animations
+SVG(document).on('logoAnimEnd', showHome)
+
+const backgroundTiming = {duration: 1500, delay: 0, wait: 0}
+const jobsTiming = {duration: 4000, delay: 300, wait: 0}
+
 function mainHandler () {
   dayNightHandler(logoHandler)
 }
 
-function dayNightHandler(callback) {
-  // Choose night day mode with local time
-  const date = new Date();
-  const hour = date.getHours()
-
-  if (hour > 20 | hour < 7) {
-    switchMode(callback);
-  } else {
-    callback()
-  }
-}
-
-// Logo handler
-function logoHandler() {
-  addLogoSvg()
-}
-
-function addLogoSvg () {
-
-  let logo;
-  logo = {url: "static/assets/svg/home/logo.svg", class: ".logo"};
-
-  addSVG(logo, onLoadLogo)
-
-}
-
-//What appens when logo svg is loaded
-function onLoadLogo (data) {
-
-  let className, svgCode;
-
-  className = data.class;
-  svgCode = data.svg.responseText;
-
-  // Add svg in DOM
-  let svg = SVG().addTo(className).svg(svgCode);
-
-  // Add svg in handler
-  logoMain.push(svg);
-
-  svg.toggleClass('anime')
-
-  setupDashAnim(svg);
-
-  function fireEvent () {
-    SVG(document).fire('fireJobs')
-  }
-
-  startDashAnim(svg, 1500, 200, 0, fireEvent); // startDashAnim(svg, 1500, 200, 0, showHome);
-}
-
-// Add event listener on document to fire animations
-SVG(document).on('fireJobs', showHome)
-
 function showHome() {
 
   // When jobs handler is executed, remove event listener.
-  SVG(document).off('fireJobs')
-
-  let logo = logoMain[0]
-
-  logo.toggleClass('anime');
-  logo.toggleClass('background');
+  SVG(document).off('logoAnimEnd')
 
   setTimeout(function () {
     SVG('.jobs').css('opacity', '1')
-    SVG('footer').show('opacity', '1')
+    SVG('footer').css('opacity', '1')
     jobsHandler()
   }, 300)
 }
@@ -113,7 +60,7 @@ function onLoadJobs (data) {
   }
 
   // Start draw animation 
-  startDashAnim(svg, 4000, 300, 0, fireEvent); //startDashAnim(svg, 4000, 300, 0, dashEndJobsFire);
+  startDashAnim(svg, jobsTiming, fireEvent); //startDashAnim(svg, 4000, 300, 0, dashEndJobsFire);
 }
 
 SVG(document).on('fireDashEnd', jobsEndAnim)
@@ -129,4 +76,3 @@ function jobsEndAnim () {
 
 // Create const to handle fire events
 const jobsMain = [];
-const logoMain = []
