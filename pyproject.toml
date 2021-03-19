@@ -7,7 +7,7 @@ authors = ["Etienne Merenda <etiennemerenda@vivaldi.net>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 django = "^2"
-djangorestframework = "^3.11.0"
+djangorestframework = "^3.11.2"
 gunicorn = "^20.0.4"
 django-heroku = "^0.3.1"
 
